@@ -1,4 +1,3 @@
-//tasks.component.ts
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10,20 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var task_service_1 = require('../../services/task.service');
-var TasksComponent = (function () {
-    function TasksComponent(taskService) {
-        this.taskService = taskService;
+var http_1 = require('@angular/http'); // The Http module lets us make request to our api. Headers lets us manipulte the headers
+require('rxjs/add/operator/map'); // rxjs means reactive extensions for javascript. This is for importing observables. Get requests and send them as observables.
+var TaskService = (function () {
+    function TaskService(http) {
+        this.http = http;
+        console.log('Task Service Initialized...');
     }
-    TasksComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'tasks',
-            templateUrl: "tasks.component.html"
-        }), 
-        __metadata('design:paramtypes', [task_service_1.TaskService])
-    ], TasksComponent);
-    return TasksComponent;
+    TaskService = __decorate([
+        // rxjs means reactive extensions for javascript. This is for importing observables. Get requests and send them as observables.
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], TaskService);
+    return TaskService;
 }());
-exports.TasksComponent = TasksComponent; // This is the class name: TasksComponent
-//# sourceMappingURL=tasks.component.js.map
+exports.TaskService = TaskService;
+//# sourceMappingURL=task.service.js.map
