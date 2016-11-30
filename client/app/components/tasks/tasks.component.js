@@ -14,6 +14,11 @@ var task_service_1 = require('../../services/task.service');
 var TasksComponent = (function () {
     function TasksComponent(taskService) {
         this.taskService = taskService;
+        this.taskService.getTasts() //'this' usually means global object (window in the browser)
+            .subscribe(function (tasks) {
+            console.log(tasks);
+        });
+        // because this is an observable, we need to subcribe to it
     }
     TasksComponent = __decorate([
         core_1.Component({

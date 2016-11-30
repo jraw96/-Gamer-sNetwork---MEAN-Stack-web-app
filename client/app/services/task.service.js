@@ -1,3 +1,4 @@
+//task.service.ts
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -16,6 +17,11 @@ var TaskService = (function () {
         this.http = http;
         console.log('Task Service Initialized...');
     }
+    //create a function call get tasks
+    TaskService.prototype.getTasts = function () {
+        return this.http.get('http://localhost:3000/api/tasks')
+            .map(function (res) { return res.json(); }); // return as type json
+    };
     TaskService = __decorate([
         // rxjs means reactive extensions for javascript. This is for importing observables. Get requests and send them as observables.
         core_1.Injectable(), 
