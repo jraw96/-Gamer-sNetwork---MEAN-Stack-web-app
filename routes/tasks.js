@@ -41,7 +41,7 @@ router.get('/tasks/:id', function(req, res, next){ // id is a place holder, it w
 //Save tasks
 router.post('/task', function(req, res, next){
    var task = req.body; 
-   if(!task.title || (task.isDone +'')){
+   if(!task.title || !(task.isDone +'')){
        res.status(400);
        res.json({
            "error" : "Bad data"
@@ -62,7 +62,7 @@ router.post('/task', function(req, res, next){
 
 
 // Delete task. Althought the url is the same as get a single task, it is actually different because it is a delete request
-router.delete('/tasks/:id', function(req, res, next){ // id is a place holder, it will be different everytime
+router.delete('/task/:id', function(req, res, next){ // id is a place holder, it will be different everytime
     db.tasks.remove({_id: mongojs.ObjectId(req.params.id)}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
         if(err){ // check for an error
             res.send(err); //send the error if there is one.
@@ -76,7 +76,7 @@ router.delete('/tasks/:id', function(req, res, next){ // id is a place holder, i
 
 
 // Update task. Using the put request pertains to data that is already on the server
-router.put('/tasks/:id', function(req, res, next){ // id is a place holder, it will be different everytime
+router.put('/task/:id', function(req, res, next){ // id is a place holder, it will be different everytime
         var task = req.body;
         var updTask = {}; // this represents the updated task. Currently an empty obejct
         
@@ -86,14 +86,14 @@ router.put('/tasks/:id', function(req, res, next){ // id is a place holder, it w
         }
         
         if(task.title){
-            updTask.title - task.title;
+            updTask.title = task.title;
         }
         
         //Check for actual object
         if(!updTask){
             res.status(400);
             res.json({
-                "error" : "Bad data"
+                "error" : "Bad data, no object"
             });
         } else {
             

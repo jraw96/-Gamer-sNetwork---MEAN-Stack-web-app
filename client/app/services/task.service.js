@@ -17,10 +17,31 @@ var TaskService = (function () {
         this.http = http;
         console.log('Task Service Initialized...');
     }
+    //These functions are listening in on the webpage
     //create a function call get tasks
     TaskService.prototype.getTasts = function () {
-        return this.http.get('http://localhost:3000/api/tasks')
+        return this.http.get('/api/tasks')
             .map(function (res) { return res.json(); }); // return as type json
+    };
+    TaskService.prototype.addTask = function (newTask) {
+        console.log(newTask);
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json'); // we want the content-type to be application/json. I assume json type.
+        return this.http.post('/api/task', JSON.stringify(newTask), { headers: headers }) // turn the newTask object into a string. The second paramter is the newTask object.
+            .map(function (res) { return res.json(); }); //This reads: "Map res to res.json
+    };
+    TaskService.prototype.deleteTask = function (id) {
+        //issue a delete request
+        return this.http.delete('http://localhost:3000/api/task/' + id) // concantenate the id
+            .map(function (res) { return res.json(); });
+    };
+    TaskService.prototype.updateStatus = function (task) {
+        console.log(task);
+        //very similar to addTask, except change post to put
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json'); // we want the content-type to be application/json. I assume json type.
+        return this.http.put('/api/task/' + task._id, JSON.stringify(task), { headers: headers }) // turn the newTask object into a string. The second paramter is the newTask object.
+            .map(function (res) { return res.json(); }); //This reads: "Map res to res.json
     };
     TaskService = __decorate([
         // rxjs means reactive extensions for javascript. This is for importing observables. Get requests and send them as observables.
