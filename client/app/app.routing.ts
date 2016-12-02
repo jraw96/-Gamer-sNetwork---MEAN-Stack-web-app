@@ -5,6 +5,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component.js';
 import { ProfileComponent } from './components/profile/profile.component.js';
+import { DmcaComponent } from './components/DMCA/dmca.component.js';
 
 const appRoutes: Routes= [ //set appRoutes to an array. Inside the array we will define our routes
   {
@@ -16,7 +17,14 @@ const appRoutes: Routes= [ //set appRoutes to an array. Inside the array we will
   {
       path: 'profile',
       component: ProfileComponent
-  }  
+  },  
+  
+  //DMCA path:
+  {
+      path: 'dmca',
+      component: DmcaComponent
+      
+  }
 
 ];
 

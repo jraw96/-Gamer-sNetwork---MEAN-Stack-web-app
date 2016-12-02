@@ -10,8 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var task_service_1 = require('./services/task.service');
-//import { HomeComponent } from './components/home/home.component';
-//import { ProfileComponent } from './components/profile/profile.component';
 var AppComponent = (function () {
     function AppComponent() {
     }

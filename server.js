@@ -13,7 +13,7 @@ var tasks = require('./routes/tasks');
 //For Authentication, require home and routes to each have their own page
 var profile = require('./routes/profile');
 var home = require('./routes/home');
-var DMCA = require('./routes/DMCA');
+var dmca = require('./routes/dmca');
 
 
 var port = 3000; 
@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({extended: false})); // standed documentation
 
 
 
-app.use('/',index, profile, home, DMCA); // the slash in the first paramters means just the homepage, which is now associated with the index route file
+app.use('/',index, profile, home, dmca); // the slash in the first paramters means just the homepage, which is now associated with the index route file
 app.use('/api', tasks); // this is for using the api
 
 
