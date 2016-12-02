@@ -17,14 +17,20 @@ var forms_1 = require('@angular/forms');
 //Importing from other directories
 var app_component_1 = require('./app.component');
 var tasks_component_1 = require('./components/tasks/tasks.component');
+//Importing authentication directories
+var home_component_1 = require('./components/home/home.component');
+var profile_component_1 = require('./components/profile/profile.component');
+//Importing routing directories
+var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent, tasks_component_1.TasksComponent],
-            bootstrap: [app_component_1.AppComponent]
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, app_routing_1.routing],
+            declarations: [app_component_1.AppComponent, tasks_component_1.TasksComponent, home_component_1.HomeComponent, profile_component_1.ProfileComponent],
+            bootstrap: [app_component_1.AppComponent],
+            providers: [app_routing_1.appRoutingProviders]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

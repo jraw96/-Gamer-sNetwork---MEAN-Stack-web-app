@@ -10,10 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent }  from './app.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 
+//Importing authentication directories
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+
+//Importing routing directories
+import { routing, appRoutingProviders } from './app.routing';
+
 @NgModule({
-  imports:      [ BrowserModule, HttpModule, FormsModule ],
-  declarations: [ AppComponent, TasksComponent ],
-  bootstrap:    [ AppComponent ]
+  imports:      [ BrowserModule, HttpModule, FormsModule, routing ], // In the imports, routing was made in app.routing.ts as RouterModule object
+  declarations: [ AppComponent, TasksComponent, HomeComponent, ProfileComponent ],
+  bootstrap:    [ AppComponent ],
+  providers: [ appRoutingProviders ]
 })
 export class AppModule { }
 

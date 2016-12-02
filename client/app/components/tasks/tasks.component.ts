@@ -21,8 +21,8 @@ export class TasksComponent {
         this.taskService.getTasts() //'this' usually means global object (window in the browser)
             .subscribe(tasks =>{
                     //console.log(tasks); // displays tasks inside the console
-                    .this.tasks = tasks; // set our tasks equal to the task coming in from the observable. Now we have access to them inside our html file
-                    
+                    this.tasks = tasks; // set our tasks equal to the task coming in from the observable. Now we have access to them inside our html file
+                    //***************************************deleteed a '.' at the start of the line above
                 });
              // because this is an observable, we need to subcribe to it
     }

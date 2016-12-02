@@ -9,22 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var task_service_1 = require('./services/task.service');
-//import { HomeComponent } from './components/home/home.component';
-//import { ProfileComponent } from './components/profile/profile.component';
-var AppComponent = (function () {
-    function AppComponent() {
+var ProfileComponent = (function () {
+    function ProfileComponent() {
     }
-    AppComponent = __decorate([
+    ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: "app.component.html",
-            providers: [task_service_1.TaskService]
+            selector: 'profile',
+            templateUrl: 'profile.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.ProfileComponent = ProfileComponent;
+//# sourceMappingURL=profile.component.js.map

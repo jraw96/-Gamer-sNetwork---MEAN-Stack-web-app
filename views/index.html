@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
   <head>
-    <title>tuesday</title>
+    <title>@Game Network</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel ="stylesheet" href="https://bootswatch.com/journal/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 
+   
     <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
+    
     <script src="systemjs.config.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
@@ -21,6 +23,7 @@
   </head>
 
   <body>
+  <base href ="/"> <!-- specify the base url on this document -->
     <my-app>Loading the good stuff  ...</my-app>
   </body>
 </html>
