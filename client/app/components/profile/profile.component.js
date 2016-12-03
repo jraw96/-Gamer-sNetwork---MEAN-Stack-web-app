@@ -9,8 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var auth_service_1 = require("../../services/auth/auth.service");
 var ProfileComponent = (function () {
-    function ProfileComponent() {
+    function ProfileComponent(auth) {
+        this.auth = auth;
+        //Because the profile data was saved as a string into localStorage, we need to get it back into JSON
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(this.profile);
     }
     ProfileComponent = __decorate([
         core_1.Component({
@@ -18,7 +23,7 @@ var ProfileComponent = (function () {
             selector: 'profile',
             templateUrl: 'profile.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.Auth])
     ], ProfileComponent);
     return ProfileComponent;
 }());

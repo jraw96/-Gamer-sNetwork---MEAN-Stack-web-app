@@ -3,7 +3,7 @@
 import { Component } from '@angular/core';
 
 //Import from other places in the directory
-import {TaskService} from '../../services/task.service';
+import {TaskService} from '../../services/tasks/task.service';
 import {Task} from '../../../Task'; 
 
 @Component({

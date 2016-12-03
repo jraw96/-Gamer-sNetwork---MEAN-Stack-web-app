@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 //Import from other places in the directory
-var task_service_1 = require('../../services/task.service');
+var task_service_1 = require('../../services/tasks/task.service');
 var TasksComponent = (function () {
     function TasksComponent(taskService) {
         var _this = this;

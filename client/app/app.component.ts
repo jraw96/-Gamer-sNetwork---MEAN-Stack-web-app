@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {TaskService} from './services/task.service';
+
+import {TaskService} from './services/tasks/task.service';
+import { Auth } from './services/auth/auth.service';
 
 @Component({
   moduleId: module.id,
@@ -7,5 +9,7 @@ import {TaskService} from './services/task.service';
   templateUrl: `app.component.html`,
   providers: [TaskService]
 })
-export class AppComponent { }
+export class AppComponent {
+    constructor(private auth:Auth){}
+  }
 

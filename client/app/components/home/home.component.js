@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var auth_service_1 = require("../../services/auth/auth.service");
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(auth) {
+        this.auth = auth;
     }
     HomeComponent = __decorate([
         core_1.Component({
@@ -18,7 +20,7 @@ var HomeComponent = (function () {
             selector: 'home',
             templateUrl: 'home.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.Auth])
     ], HomeComponent);
     return HomeComponent;
 }());

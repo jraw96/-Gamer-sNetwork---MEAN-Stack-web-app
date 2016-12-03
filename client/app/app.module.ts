@@ -6,14 +6,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-//Importing from other directories
+//Auth0 thing
+import { AUTH_PROVIDERS } from 'angular2-jwt';
+
+//App component
 import { AppComponent }  from './app.component';
+
+
+//Importing Services
+import { TasksComponent } from './components/tasks/tasks.component';
+import {Auth} from './services/auth/auth.service';
 
 
 //Importing component directories
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { TasksComponent } from './components/tasks/tasks.component';
+
 import { DmcaComponent } from './components/DMCA/dmca.component';
 
 
@@ -25,7 +33,7 @@ import { routing, appRoutingProviders } from './app.routing';
   imports:      [ BrowserModule, HttpModule, FormsModule, routing ], // In the imports, routing was made in app.routing.ts as RouterModule object
   declarations: [ AppComponent, TasksComponent, HomeComponent, ProfileComponent, DmcaComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ appRoutingProviders ]
+  providers: [ appRoutingProviders, AUTH_PROVIDERS, Auth ]
 })
 export class AppModule { }
 

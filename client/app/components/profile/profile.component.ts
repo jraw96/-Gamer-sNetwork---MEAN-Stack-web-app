@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth } from "../../services/auth/auth.service";
 
 
 @Component({
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
   selector: 'profile',
   templateUrl: 'profile.component.html'
 })
-export class ProfileComponent { }
+export class ProfileComponent {
+    //Make a  profle object
+    profile:any;
+constructor(private auth:Auth){
+    //Because the profile data was saved as a string into localStorage, we need to get it back into JSON
+    this.profile = JSON.parse(localStorage.getItem('profile'));
+    console.log(this.profile);
+    }
+}
