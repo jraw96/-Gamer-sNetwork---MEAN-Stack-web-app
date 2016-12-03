@@ -6,7 +6,7 @@ var express = require('express'); // bring in express
 var router = express.Router(); // brings in the express router
 var mongojs = require('mongojs'); // bring in mongojs
 
-var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb', ['tasks']); // This is a driver that lets us connect to the online mongodb: mlab
+var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb', ['tasks2']); // This is a driver that lets us connect to the online mongodb: mlab
                                                                                               // The second parameter is an array of the collections we want. We only have tasks
 
 //Note: req means request, res means responst, next means carry on once finished.

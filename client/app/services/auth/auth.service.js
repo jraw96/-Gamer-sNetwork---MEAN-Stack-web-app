@@ -18,7 +18,8 @@ var Auth = (function () {
         this.lock = new Auth0Lock('pSR4qKP1S8WD843b2BfIYWQPB62ih15e', 'jraw.auth0.com', {});
         // Add callback for lock `authenticated` event
         this.lock.on("authenticated", function (authResult) {
-            //Save data about logged in profile
+            //Save data about logged in profile. Pull the auth result object declared above into the paramtes below
+            // Also included in the paramters below is a callback function
             _this.lock.getProfile(authResult.idToken, function (error, profile) {
                 if (error) {
                     throw new Error(error);

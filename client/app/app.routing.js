@@ -4,6 +4,8 @@ var router_1 = require('@angular/router');
 var home_component_js_1 = require('./components/home/home.component.js');
 var profile_component_js_1 = require('./components/profile/profile.component.js');
 var dmca_component_js_1 = require('./components/DMCA/dmca.component.js');
+//Import authguard
+var auth_guard_js_1 = require('./services/auth/auth.guard.js');
 var appRoutes = [
     {
         path: '',
@@ -12,7 +14,9 @@ var appRoutes = [
     //Create a path for our profile
     {
         path: 'profile',
-        component: profile_component_js_1.ProfileComponent
+        component: profile_component_js_1.ProfileComponent,
+        //Because this page can be blocked if not signed in, use AuthGuard
+        canActivate: [auth_guard_js_1.AuthGuard]
     },
     //DMCA path:
     {

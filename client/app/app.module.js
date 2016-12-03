@@ -21,6 +21,7 @@ var app_component_1 = require('./app.component');
 //Importing Services
 var tasks_component_1 = require('./components/tasks/tasks.component');
 var auth_service_1 = require('./services/auth/auth.service');
+var auth_guard_1 = require('./services/auth/auth.guard');
 //Importing component directories
 var home_component_1 = require('./components/home/home.component');
 var profile_component_1 = require('./components/profile/profile.component');
@@ -35,7 +36,7 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, app_routing_1.routing],
             declarations: [app_component_1.AppComponent, tasks_component_1.TasksComponent, home_component_1.HomeComponent, profile_component_1.ProfileComponent, dmca_component_1.DmcaComponent],
             bootstrap: [app_component_1.AppComponent],
-            providers: [app_routing_1.appRoutingProviders, angular2_jwt_1.AUTH_PROVIDERS, auth_service_1.Auth]
+            providers: [app_routing_1.appRoutingProviders, angular2_jwt_1.AUTH_PROVIDERS, auth_service_1.Auth, auth_guard_1.AuthGuard]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

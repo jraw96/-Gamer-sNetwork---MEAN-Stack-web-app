@@ -5,6 +5,7 @@ router.get('/profile', function(req, res, next){
    
     //Go to the directory that will hold the profile.component.html
     res.render('../client/app/components/profile/profile.component.html');
+    
 });
 
 module.exports = router; // this means we access this page from other files

@@ -16,6 +16,7 @@ import { AppComponent }  from './app.component';
 //Importing Services
 import { TasksComponent } from './components/tasks/tasks.component';
 import {Auth} from './services/auth/auth.service';
+import {AuthGuard} from './services/auth/auth.guard';
 
 
 //Importing component directories
@@ -33,7 +34,7 @@ import { routing, appRoutingProviders } from './app.routing';
   imports:      [ BrowserModule, HttpModule, FormsModule, routing ], // In the imports, routing was made in app.routing.ts as RouterModule object
   declarations: [ AppComponent, TasksComponent, HomeComponent, ProfileComponent, DmcaComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ appRoutingProviders, AUTH_PROVIDERS, Auth ]
+  providers: [ appRoutingProviders, AUTH_PROVIDERS, Auth, AuthGuard ]
 })
 export class AppModule { }
 

@@ -7,6 +7,9 @@ import { HomeComponent } from './components/home/home.component.js';
 import { ProfileComponent } from './components/profile/profile.component.js';
 import { DmcaComponent } from './components/DMCA/dmca.component.js';
 
+//Import authguard
+import {AuthGuard } from './services/auth/auth.guard.js';
+
 const appRoutes: Routes= [ //set appRoutes to an array. Inside the array we will define our routes
   {
       path: '', // this will be the home page, and will have a blank route.
@@ -16,7 +19,9 @@ const appRoutes: Routes= [ //set appRoutes to an array. Inside the array we will
   //Create a path for our profile
   {
       path: 'profile',
-      component: ProfileComponent
+      component: ProfileComponent,
+      //Because this page can be blocked if not signed in, use AuthGuard
+      canActivate: [AuthGuard]
   },  
   
   //DMCA path:

@@ -11,7 +11,8 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 //For Authentication, require home and routes to each have their own page
-var profile = require('./routes/profile');
+
+var profile = require('./routes/profile')
 var home = require('./routes/home');
 var dmca = require('./routes/dmca');
 
