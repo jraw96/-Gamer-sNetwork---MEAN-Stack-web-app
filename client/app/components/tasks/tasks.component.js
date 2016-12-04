@@ -1,4 +1,5 @@
 //tasks.component.ts
+//Changing certain tasks to tasks2
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -12,13 +13,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 //Import from other places in the directory
 var task_service_1 = require('../../services/tasks/task.service');
+var auth_service_1 = require("../../services/auth/auth.service");
 var TasksComponent = (function () {
-    function TasksComponent(taskService) {
+    function TasksComponent(taskService, auth) {
         var _this = this;
         this.taskService = taskService;
-        this.taskService.getTasts() //'this' usually means global object (window in the browser)
+        this.auth = auth;
+        //Copied from profile.components
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(this.profile);
+        var account = this.profile.user_id;
+        this.taskService.getTasks(account) //'this' usually means global object (window in the browser)
             .subscribe(function (tasks) {
-            //console.log(tasks); // displays tasks inside the console
+            console.log('Inside the getTasks():' + tasks); // displays tasks inside the console
             _this.tasks = tasks; // set our tasks equal to the task coming in from the observable. Now we have access to them inside our html file
             //***************************************deleteed a '.' at the start of the line above
         });
@@ -27,10 +34,14 @@ var TasksComponent = (function () {
     TasksComponent.prototype.addTask = function (event) {
         var _this = this;
         event.preventDefault();
+        this.profile = JSON.parse(localStorage.getItem('profile'));
         //console.log(this.title) //this display in the browser console what was submitted in form-grop div in the html file
+        var account = this.profile.user_id;
+        console.log('account value in client: ' + account);
         var newTask = {
             title: this.title,
-            isDone: false
+            accountID: account,
+            isDone: false,
         };
         //To push to the brower and have it displayed temporarily:
         //this.tasks.push(newTask);
@@ -43,7 +54,12 @@ var TasksComponent = (function () {
     };
     TasksComponent.prototype.deleteTask = function (id) {
         var tasks = this.tasks; // take in a tasks and set it to the current tasks
-        this.taskService.deleteTask(id).subscribe(function (data) {
+        //Copied from profile.components
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(this.profile);
+        var account = this.profile.user_id;
+        this.taskService.deleteTask(id, account)
+            .subscribe(function (data) {
             if (data.n == 1) {
                 for (var i = 0; i < tasks.length; i++) {
                     if (tasks[i]._id == id) {
@@ -58,10 +74,12 @@ var TasksComponent = (function () {
         var _task = {
             _id: task._id,
             title: task.title,
-            isDone: !task.isDone
+            isDone: !task.isDone,
+            accountID: task.accountID
         };
         //Call a service function
-        this.taskService.updateStatus(_task).subscribe(function (data) {
+        this.taskService.updateStatus(_task)
+            .subscribe(function (data) {
             task.isDone = !task.isDone; // update the boolean value of task. 
         });
     };
@@ -69,9 +87,9 @@ var TasksComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'tasks',
-            templateUrl: "tasks.component.html"
+            templateUrl: "tasks.component.html",
         }), 
-        __metadata('design:paramtypes', [task_service_1.TaskService])
+        __metadata('design:paramtypes', [task_service_1.TaskService, auth_service_1.Auth])
     ], TasksComponent);
     return TasksComponent;
 }());

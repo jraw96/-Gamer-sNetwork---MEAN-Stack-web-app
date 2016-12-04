@@ -12,7 +12,7 @@ var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 //For Authentication, require home and routes to each have their own page
 
-var profile = require('./routes/profile')
+var profile = require('./routes/profile');
 var home = require('./routes/home');
 var dmca = require('./routes/dmca');
 
@@ -20,6 +20,8 @@ var dmca = require('./routes/dmca');
 var port = 3000; 
 
 var app = express();
+
+var userCollection; //Hopefully this works
 
 
 //View Engine
@@ -49,7 +51,7 @@ app.use('/api', tasks); // this is for using the api
 
 
 
-
 app.listen(port, function(){ // function() is a callback function that does soemthing when we connect
     console.log('Server started on port' + port);
+
 }); // for turning on the server. 

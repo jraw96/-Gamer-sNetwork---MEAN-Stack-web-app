@@ -2,5 +2,5 @@
 export class Task{
     title: string;
     isDone: boolean;
-    details: string;
+    accountID: string;
 }

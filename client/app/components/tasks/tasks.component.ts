@@ -1,37 +1,60 @@
 //tasks.component.ts
+//Changing certain tasks to tasks2
 
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 //Import from other places in the directory
 import {TaskService} from '../../services/tasks/task.service';
+import { Auth } from "../../services/auth/auth.service";
+
 import {Task} from '../../../Task'; 
+
 
 @Component({
   moduleId: module.id,
   selector: 'tasks',
-  templateUrl: `tasks.component.html`
+  templateUrl: `tasks.component.html`,
 })
 export class TasksComponent { 
     
     //Add the tasks as a property in the component
+    
     tasks: Task[]; // To let this file recognize the Task[] object, make sure to import the Task class from the client folder.
     title: string;
+    accountID: string;
+    profile: any;
+    account: any;
     
-    constructor(private taskService:TaskService){
-        this.taskService.getTasts() //'this' usually means global object (window in the browser)
+    
+    constructor(private taskService:TaskService, private auth:Auth){
+        
+        //Copied from profile.components
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(this.profile);
+        var account = this.profile.user_id;
+        
+        
+        this.taskService.getTasks(account) //'this' usually means global object (window in the browser)
             .subscribe(tasks =>{
-                    //console.log(tasks); // displays tasks inside the console
+                    console.log('Inside the getTasks():' + tasks); // displays tasks inside the console
                     this.tasks = tasks; // set our tasks equal to the task coming in from the observable. Now we have access to them inside our html file
+                    
                     //***************************************deleteed a '.' at the start of the line above
                 });
              // because this is an observable, we need to subcribe to it
     }
     addTask(event){
         event.preventDefault();
+        this.profile = JSON.parse(localStorage.getItem('profile'));
         //console.log(this.title) //this display in the browser console what was submitted in form-grop div in the html file
+        var account = this.profile.user_id;
+        
+        console.log('account value in client: ' + account);
         var newTask = {
             title: this.title, // this.title is equal to whatever is typed in
-            isDone: false
+            accountID: account,
+            isDone: false,
+           
         }   
         
         //To push to the brower and have it displayed temporarily:
@@ -46,8 +69,13 @@ export class TasksComponent {
     
     deleteTask(id){
         var tasks = this.tasks; // take in a tasks and set it to the current tasks
+        //Copied from profile.components
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(this.profile);
+        var account = this.profile.user_id;
         
-        this.taskService.deleteTask(id).subscribe(data =>{ // The function for deleteTask will be found inside the file task.server.ts. Becuse this is an observable, we have to subscribe
+        this.taskService.deleteTask(id, account)
+            .subscribe(data =>{ // The function for deleteTask will be found inside the file task.server.ts. Becuse this is an observable, we have to subscribe
             if(data.n == 1){ //Loop through the task to find the one with the id we are looking for
                 for (var i = 0; i< tasks.length; i++){
                     if(tasks[i]._id == id){ // if the _id on the tasks matches the id past in
@@ -63,11 +91,13 @@ export class TasksComponent {
         var _task = {
             _id: task._id,
             title: task.title,
-            isDone: !task.isDone
+            isDone: !task.isDone,
+            accountID: task.accountID
         };
         //Call a service function
-        this.taskService.updateStatus(_task).subscribe(data =>{ // pass in the object paramters
-            task.isDone = !task.isDone; // update the boolean value of task. 
+        this.taskService.updateStatus(_task)
+            .subscribe(data =>{ // pass in the object paramters
+                task.isDone = !task.isDone; // update the boolean value of task. 
         })
     }
     

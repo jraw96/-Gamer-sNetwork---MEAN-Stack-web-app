@@ -2,19 +2,31 @@
 // A RESTful api is an application program interface that uses HTTP requests to manage data
 
 
+
 var express = require('express'); // bring in express
 var router = express.Router(); // brings in the express router
 var mongojs = require('mongojs'); // bring in mongojs
 
-var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb', ['tasks2']); // This is a driver that lets us connect to the online mongodb: mlab
+//Deleted this from the second paramter: ['tasks2']
+
+
+
+var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb'); // This is a driver that lets us connect to the online mongodb: mlab
                                                                                               // The second parameter is an array of the collections we want. We only have tasks
+
+
 
 //Note: req means request, res means responst, next means carry on once finished.
 
-
 //This gets all tasks
 router.get('/tasks', function(req, res, next){ // connect to the home page, which is a simple '/'
-    db.tasks.find(function(err,tasks){ // function takes an err and tasks
+ 
+   var boko = req.query.param1;
+   
+   
+   console.log('Get section: ' + boko);
+   
+    db[boko].find(function(err,tasks){ // function takes an err and tasks
         if(err){ // check for an error
             res.send(err); //send the error if there is one.
         }
@@ -27,7 +39,9 @@ router.get('/tasks', function(req, res, next){ // connect to the home page, whic
 
 // Get single tasks
 router.get('/tasks/:id', function(req, res, next){ // id is a place holder, it will be different everytime
-    db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
+    var boko = req.body;
+    
+    db[boko.acountID].findOne({_id: mongojs.ObjectId(req.params.id)}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
         if(err){ // check for an error
             res.send(err); //send the error if there is one.
         }
@@ -40,6 +54,12 @@ router.get('/tasks/:id', function(req, res, next){ // id is a place holder, it w
 
 //Save tasks
 router.post('/task', function(req, res, next){
+    
+    
+   var boko = req.body;
+   
+   console.log('In the post section:' + boko.accountID);
+   
    var task = req.body; 
    if(!task.title || !(task.isDone +'')){
        res.status(400);
@@ -48,7 +68,8 @@ router.post('/task', function(req, res, next){
        });
        
     } else {
-        db.tasks.save(task, function(err, task){
+        
+        db[boko.accountID].save(task, function(err, task){
                 if(err){ // check for an error
             res.send(err); //send the error if there is one.
         }
@@ -63,7 +84,10 @@ router.post('/task', function(req, res, next){
 
 // Delete task. Althought the url is the same as get a single task, it is actually different because it is a delete request
 router.delete('/task/:id', function(req, res, next){ // id is a place holder, it will be different everytime
-    db.tasks.remove({_id: mongojs.ObjectId(req.params.id)}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
+    var boko = req.query.param1;
+    
+    console.log('delete section: ' + boko);
+    db[boko].remove({_id: mongojs.ObjectId(req.params.id)}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
         if(err){ // check for an error
             res.send(err); //send the error if there is one.
         }
@@ -77,6 +101,9 @@ router.delete('/task/:id', function(req, res, next){ // id is a place holder, it
 
 // Update task. Using the put request pertains to data that is already on the server
 router.put('/task/:id', function(req, res, next){ // id is a place holder, it will be different everytime
+    
+        var boko = req.body;
+        console.log('Put section: '+ boko);
         var task = req.body;
         var updTask = {}; // this represents the updated task. Currently an empty obejct
         
@@ -98,7 +125,7 @@ router.put('/task/:id', function(req, res, next){ // id is a place holder, it wi
         } else {
             
      //Use udpate request here. The third paramter is an empty object
-    db.tasks.update({_id: mongojs.ObjectId(req.params.id)},updTask, {}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
+    db[boko.accountID].update({_id: mongojs.ObjectId(req.params.id)},updTask, {}, function(err,task){ // The object id is stored in the database. Task is changed to singular to only grab 1 object.
         if(err){ // check for an error
             res.send(err); //send the error if there is one.
         }

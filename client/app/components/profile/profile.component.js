@@ -16,12 +16,15 @@ var ProfileComponent = (function () {
         //Because the profile data was saved as a string into localStorage, we need to get it back into JSON
         this.profile = JSON.parse(localStorage.getItem('profile'));
         console.log(this.profile);
+        //Store the corresponding database for this user
+        var account;
+        account = this.profile.user_id;
     }
     ProfileComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'profile',
-            templateUrl: 'profile.component.html'
+            templateUrl: 'profile.component.html',
         }), 
         __metadata('design:paramtypes', [auth_service_1.Auth])
     ], ProfileComponent);

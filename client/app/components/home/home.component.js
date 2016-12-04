@@ -13,6 +13,15 @@ var auth_service_1 = require("../../services/auth/auth.service");
 var HomeComponent = (function () {
     function HomeComponent(auth) {
         this.auth = auth;
+        /*
+          //Because the profile data was saved as a string into localStorage, we need to get it back into JSON
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+        console.log(this.profile);
+        
+        //Store the corresponding database for this user
+        var account: any;
+        account = this.profile.user_id;
+        */
     }
     HomeComponent = __decorate([
         core_1.Component({
