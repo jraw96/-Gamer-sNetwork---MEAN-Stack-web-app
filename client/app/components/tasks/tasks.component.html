@@ -1,20 +1,41 @@
+<div class ="task-list">
+<div>
+   
+        
+        <input type = "button" (click)= "clicked()" value="Edit" class ="btn btn-success">
+        
+        <br>
+        <div *ngIf = "!edit"> <!-- VIEW ONLY MODE -->
+            <div class ="task-list">
+                <div *ngFor="let task of tasks">
+                    <div class ="col-md-7">
+                        <h3> {{task.title}} </h3><!-- display all task titles here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf = "edit" > <!-- EDIT MODE -->
+            
 <form class="well" (submit)="addTask($event)">
  
     
     <div class = "form-group">
-        <input type="text"[(ngModel)]="title" name="title" class ="form-control" placeholder="Add Task">
+        <input type="text"[(ngModel)]="title" name="title" class ="form-control" placeholder="Add New Credential">
     </div>  
 </form>
 
 <div class ="task-list">
     <div *ngFor="let task of tasks"> <!-- the asterisk in *ngFOr means it will use the DOm element as a template to render the loop -->
         
+        <!--
     <div class = "col-md-1">
          <input type ="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
     </div>
-        
+        -->
     <div class ="col-md-7">
         {{task.title}} <!-- display all task titles here -->
+        
     </div>
         
     <div class="col-md-4">
@@ -25,3 +46,15 @@
 </div> <!-- end of ngFor -->
 
 </div>
+
+        </div>
+        
+    </div>
+</div>
+
+        
+
+
+
+
+

@@ -4,6 +4,7 @@ var router_1 = require('@angular/router');
 var home_component_js_1 = require('./components/home/home.component.js');
 var profile_component_js_1 = require('./components/profile/profile.component.js');
 var dmca_component_js_1 = require('./components/DMCA/dmca.component.js');
+var search_component_1 = require('./components/search/search.component');
 //Import authguard
 var auth_guard_js_1 = require('./services/auth/auth.guard.js');
 var appRoutes = [
@@ -22,6 +23,10 @@ var appRoutes = [
     {
         path: 'dmca',
         component: dmca_component_js_1.DmcaComponent
+    },
+    {
+        path: 'search',
+        component: search_component_1.SearchComponent
     }
 ];
 exports.appRoutingProviders = []; // set to any array and set it to an empty array

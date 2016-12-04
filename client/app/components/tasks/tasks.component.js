@@ -19,6 +19,7 @@ var TasksComponent = (function () {
         var _this = this;
         this.taskService = taskService;
         this.auth = auth;
+        this.edit = false;
         //Copied from profile.components
         this.profile = JSON.parse(localStorage.getItem('profile'));
         console.log(this.profile);
@@ -42,6 +43,7 @@ var TasksComponent = (function () {
             title: this.title,
             accountID: account,
             isDone: false,
+            editMode: false
         };
         //To push to the brower and have it displayed temporarily:
         //this.tasks.push(newTask);
@@ -75,13 +77,18 @@ var TasksComponent = (function () {
             _id: task._id,
             title: task.title,
             isDone: !task.isDone,
-            accountID: task.accountID
+            accountID: task.accountID,
+            editMode: !task.editMode
         };
-        //Call a service function
+        //Call a service function to send the new data
         this.taskService.updateStatus(_task)
             .subscribe(function (data) {
             task.isDone = !task.isDone; // update the boolean value of task. 
+            task.editMode = !task.editMode; // update boolean of the edit mode button
         });
+    };
+    TasksComponent.prototype.clicked = function () {
+        this.edit = !this.edit;
     };
     TasksComponent = __decorate([
         core_1.Component({

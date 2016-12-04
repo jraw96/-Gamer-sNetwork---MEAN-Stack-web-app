@@ -1,3 +1,32 @@
-<h1> welcome </h1>
-<div class ="alert alert-success" *ngIf="auth.authenticated()"> You are now logged in </div>
-<div class ="alert alert-danger" *ngIf="!auth.authenticated()"> You are not logged in </div>
+<!--Not logged in home page -->
+<div *ngIf="!auth.authenticated()">
+<div class ="alert alert-danger"> You are not logged in </div>
+<h1> Welcome to Gamer's Network </h1>
+<p> Gamer's Network provides the ultimate platform for Esports organizations and players to find each other online. By creating accounts with Gamer's Network,
+you create an online profile and presence in the esports industry. With our reliable and secure database services, you can trust us to protect accounts and  make fast connections.</p> 
+<br>
+<p> Get started by clicking the Login button at the top right of the screen to sign in to an existing account or create a new account. </p>
+<br>
+<img src="http://e-sports.net/wp-content/uploads/2015/08/esports-betting.jpg">
+</div>
+
+<!-- Logged in home page -->
+<div *ngIf="auth.authenticated()">
+<h1> Trusted by esports athletes everywhere. </h1>
+<div class ="alert alert-success"> You are now logged in </div>
+<p> Welcome to the Homescreen! Here you can find updates and news about Gamer's Network and Esports news!
+
+
+<br>
+<br>
+<p>News: <a href="https://playoverwatch.com/en-us/blog/20391338"> Blizzard's Overwatch Season 3 begins!</a> </p>
+<p>News:  <a href="http://www.riftherald.com/lck/2016/12/1/13812498/skt-huni-lol-signs-2017-roster"> LoL esports: Former Immortals Top laner Huni signed for the league 2017 season with SKT TI telecom confirmed!</a> </p>
+<p> Site Announcements [12/01/2016]: The database is more functional then ever before. -Jake R </p>
+<p> Site Announcements [11/30/2016]: The bootstrap UI is in and it looks great! -Jake R </p>
+<p> Site Announcements [11/28/2016]: Beta is still underway, thank you for everyone helping to support the site! -Jake R </p>
+<img src="http://pvpantherprint.org/wp-content/uploads/2015/09/esports2.jpg">
+</div>
+
+
+
+

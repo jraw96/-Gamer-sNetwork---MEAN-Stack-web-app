@@ -17,6 +17,7 @@ import {Task} from '../../../Task';
 })
 export class TasksComponent { 
     
+    public edit = false;
     //Add the tasks as a property in the component
     
     tasks: Task[]; // To let this file recognize the Task[] object, make sure to import the Task class from the client folder.
@@ -24,6 +25,7 @@ export class TasksComponent {
     accountID: string;
     profile: any;
     account: any;
+   
     
     
     constructor(private taskService:TaskService, private auth:Auth){
@@ -54,6 +56,7 @@ export class TasksComponent {
             title: this.title, // this.title is equal to whatever is typed in
             accountID: account,
             isDone: false,
+            editMode: false
            
         }   
         
@@ -92,14 +95,21 @@ export class TasksComponent {
             _id: task._id,
             title: task.title,
             isDone: !task.isDone,
-            accountID: task.accountID
+            accountID: task.accountID,
+            editMode: !task.editMode
         };
-        //Call a service function
+        //Call a service function to send the new data
         this.taskService.updateStatus(_task)
             .subscribe(data =>{ // pass in the object paramters
                 task.isDone = !task.isDone; // update the boolean value of task. 
+                task.editMode = !task.editMode; // update boolean of the edit mode button
         })
     }
     
+    clicked(){
+        this.edit = !this.edit;
+    }
+    
+   
 } // This is the class name: TasksComponent
 
