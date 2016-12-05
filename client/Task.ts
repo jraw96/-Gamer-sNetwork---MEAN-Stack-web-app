@@ -6,6 +6,7 @@ export class Task{
     editMode: boolean; // boolean variable to turn edit mode on and of
     game: string; // Name of game searched in the search tab
     nickName: string; // nickname associated with the Auth0 account
-    description: string;
+    description: string; // description about a game
+    searchWord: string; // searched word by user
     
 }

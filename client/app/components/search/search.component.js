@@ -9,16 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var task_service_1 = require('../../services/tasks/task.service');
 var SearchComponent = (function () {
-    function SearchComponent() {
+    function SearchComponent(taskService) {
+        this.taskService = taskService;
     }
+    //Only function is to search for tasks
+    SearchComponent.prototype.searchTasks = function (event) {
+        var _this = this;
+        event.preventDefault();
+        var word = { searchWord: this.searchWord };
+        var searchedWord = word.searchWord;
+        console.log('Search word object: ' + searchedWord);
+        this.taskService.searchTasks(searchedWord) // here addTask belongs to taskService, which is in task.Service.js, which is in the services folder
+            .subscribe(function (data) {
+            _this.tasks.push(data);
+            //clear the form:
+            _this.searchWord = '';
+        });
+    };
     SearchComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'search',
             templateUrl: 'search.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [task_service_1.TaskService])
     ], SearchComponent);
     return SearchComponent;
 }());

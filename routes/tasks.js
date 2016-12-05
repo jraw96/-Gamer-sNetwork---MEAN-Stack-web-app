@@ -36,16 +36,83 @@ router.get('/tasks', function(req, res, next){ // connect to the home page, whic
     });
 });
 
-/*
+
 //Search for a game title in the database
 router.get('/search', function(req, res, next){
     
     var game = req.query.param1; // Save the game search that was included the get paramter as a string
-    console.log('Inside the routes folder, about to search for: ' + game);
+     console.log('Searched game: ' + game);
+     
+    
+     var array = new Array();
+     var counter = 0;
+     var total = 0;
   
-}
+   
+          db.userList.find({}).forEach(function(err, item){
+         //console.log(item.authID);
 
-*/
+        try{
+ 
+        if(item === null) throw "Total number of users in database found. Now searching if they play the searched game.";
+         var temp = item.authID;
+         console.log(temp);
+         array.push(temp); // add each authID form the userList to an array
+         counter = counter + 1;
+         console.log('counter total: ' + counter);
+         console.log('Array value: '+ array[counter - 1]);
+         
+        }
+             
+        catch(err){ // This is so bad writing the rest of the code here
+            
+            
+          
+          console.log('Value of counter: ' + counter);
+          console.log(err);  
+          console.log(' ');
+          
+          try{
+          //Find the account names that have the selected games, then send all the users with their names, games and descriptions to a new collection called SearchQueue. This will display all the account data  
+          var secondsToWait = 1;
+        setTimeout(function() {         
+                
+        for( var i = 0; i <= counter - 1; i++){
+        
+        db[array[i]].findOne({"title" : game}, function(err,item){
+        
+         var boko = item.accountID;
+         var goko = item.title;
+         console.log('boko: ' + boko);
+         console.log('goko: ' + goko);   
+        console.log('Inside first condition');
+        console.log(item);
+        console.log('Before assign item data');
+        //if(i === counter) throw "No more users with this game";      
+        db.searchQueue.save({"title" : boko}, {"game" : goko });   
+
+         console.log('waited 1 sec');// Whatever you want to do after the wait
+        
+
+          });
+
+          } // end of for loop
+          
+          
+          }, secondsToWait);
+          
+         } catch(err){
+             console.log(err);
+             console.log('Done inserting into the userQueue');
+        }
+       } // END OF FIRST CATCH
+        
+       // console.log('Value of counter: ' + counter);
+     });
+   
+});
+
+
 
 
 // Get single tasks
@@ -83,9 +150,9 @@ router.post('/task', function(req, res, next){
        
        
        if(item === null){ //If the user id has never enterd their data before, create a new document
-           db.userList.save({"authID": boko.accountID});
+           db.userList.save({"authID": boko.accountID}, {"nickName": boko.nickName});
        }  else if(item.authID !== boko.accountID){ // if the current user id is not in the userlist, add it to the list
-           db.userList.save({"authID": boko.accountID});
+           db.userList.save({"authID": boko.accountID}, {"nickName": boko.nickname});
            console.log('New user added to userList!');
        } else {
            console.log('Returning user.');

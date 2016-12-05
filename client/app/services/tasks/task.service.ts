@@ -30,19 +30,21 @@ export class TaskService{ // create the class TaskService
         .map(res => res.json()); // return as type json
     }
     
-    /*
-    searchTasks(gameName){
-        console.log('Inside injectable');
+    
+    searchTasks(searchedWord){
+        
+        console.log('Inside searchTasks client, searchWord: ' + searchedWord);
+        
         let params = new URLSearchParams;
-        params.set('param1', gameName);
+        params.set('param1', searchedWord);
        
         
-        return this.http.get('./api/search')
+        return this.http.get('/api/search', {search : params})
         
         //Return as observable
         .map(res => res.json());
     }
-    */
+    
     
     addTask(newTask){ //take in the newTask object from task.components.ts
         console.log('This is being sent to server: ' + newTask);

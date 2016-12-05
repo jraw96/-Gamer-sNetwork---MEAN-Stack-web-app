@@ -1,5 +1,16 @@
 <p> Search for users or games in our player base here. </p>
 
-<div class = "form-group">
-        <input type="text"[(ngModel)]="game" name="game" class ="form-control" placeholder="Search game or player...">
-</div> 
+<form class="well" (submit)="searchTasks($event)">
+ 
+    <div class = "form-group">
+        <input type="text"[(ngModel)]="searchWord" name="searchWord" class ="form-control" placeholder="Search for a game">
+    </div>  
+</form>
+
+
+<div class ="task-list">
+    <div *ngFor="let task of tasks"> <!-- the asterisk in *ngFOr means it will use the DOm element as a template to render the loop -->
+
+
+
+</div>
