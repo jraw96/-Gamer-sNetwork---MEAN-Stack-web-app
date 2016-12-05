@@ -192,9 +192,9 @@ router.post('/task', function(req, res, next){
        
        
        if(item === null){ //If the user id has never enterd their data before, create a new document
-           db.userList.save({"authID": boko.accountID}, {"nickName": boko.nickName});
+           db.userList.save({"authID": boko.accountID}, {"nickName": boko.nickName}, {"description":boko.description});
        }  else if(item.authID !== boko.accountID){ // if the current user id is not in the userlist, add it to the list
-           db.userList.save({"authID": boko.accountID}, {"nickName": boko.nickname});
+           db.userList.save({"authID": boko.accountID}, {"nickName": boko.nickname}, {"description": boko.description});
            console.log('New user added to userList!');
        } else {
            console.log('Returning user.');
@@ -204,7 +204,7 @@ router.post('/task', function(req, res, next){
 
   
   console.log('Passing anyway');
-  console.log('Exactly after passing away');
+
 
 
    var task = req.body; 

@@ -28,7 +28,8 @@ export class TasksComponent {
     game: string;
     nickName: string;
     description: string;
-    array: [null]
+    array: [null];
+    submit: boolean;
    
     
     
@@ -55,8 +56,10 @@ export class TasksComponent {
         //console.log(this.title) //this display in the browser console what was submitted in form-grop div in the html file
         var account = this.profile.user_id;
         var nickName = this.profile.nickname;
+        var description = this.description;
         
         console.log('account value in client: ' + account + ' with nickname: ' + nickName);
+        console.log('Description value in client' + description);
         var newTask = {
             title: this.title, // this.title is equal to whatever is typed in for title
             description: this.description,
@@ -123,19 +126,22 @@ export class TasksComponent {
             isDone: !task.isDone,
             accountID: task.accountID,
             editMode: !task.editMode,
-            nickName: task.niceName
+            nickName: task.niceName,
+            description: task.description
         };
         //Call a service function to send the new data
         this.taskService.updateStatus(_task)
             .subscribe(data =>{ // pass in the object paramters
                 task.isDone = !task.isDone; // update the boolean value of task. 
                 task.editMode = !task.editMode; // update boolean of the edit mode button
+                this.submit = !task.submit;
         })
     }
     
     clicked(){
         this.edit = !this.edit;
     }
+    
     
    
 } // This is the class name: TasksComponent

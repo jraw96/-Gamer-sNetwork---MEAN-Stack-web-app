@@ -39,9 +39,12 @@ var TasksComponent = (function () {
         //console.log(this.title) //this display in the browser console what was submitted in form-grop div in the html file
         var account = this.profile.user_id;
         var nickName = this.profile.nickname;
+        var description = this.description;
         console.log('account value in client: ' + account + ' with nickname: ' + nickName);
+        console.log('Description value in client' + description);
         var newTask = {
             title: this.title,
+            description: this.description,
             accountID: account,
             nickName: nickName,
             isDone: false,
@@ -92,6 +95,7 @@ var TasksComponent = (function () {
         });
     };
     TasksComponent.prototype.updateStatus = function (task) {
+        var _this = this;
         //create a new object to update with:
         var _task = {
             _id: task._id,
@@ -99,13 +103,15 @@ var TasksComponent = (function () {
             isDone: !task.isDone,
             accountID: task.accountID,
             editMode: !task.editMode,
-            nickName: task.niceName
+            nickName: task.niceName,
+            description: task.description
         };
         //Call a service function to send the new data
         this.taskService.updateStatus(_task)
             .subscribe(function (data) {
             task.isDone = !task.isDone; // update the boolean value of task. 
             task.editMode = !task.editMode; // update boolean of the edit mode button
+            _this.submit = !task.submit;
         });
     };
     TasksComponent.prototype.clicked = function () {

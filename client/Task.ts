@@ -9,4 +9,5 @@ export class Task{
     description: string; // description about a game
     searchWord: string; // searched word by user
     results: [{}]; // array of objects
+    submit: boolean; // for entering a title and description
 }
