@@ -28,6 +28,7 @@ export class TasksComponent {
     game: string;
     nickName: string;
     description: string;
+    array: [null]
    
     
     
@@ -57,7 +58,8 @@ export class TasksComponent {
         
         console.log('account value in client: ' + account + ' with nickname: ' + nickName);
         var newTask = {
-            title: this.title, // this.title is equal to whatever is typed in
+            title: this.title, // this.title is equal to whatever is typed in for title
+            description: this.description,
             accountID: account,
             nickName: nickName,
             isDone: false,
@@ -68,8 +70,10 @@ export class TasksComponent {
         //To push to the brower and have it displayed temporarily:
         //this.tasks.push(newTask);
         this.taskService.addTask(newTask) // here addTask belongs to taskService, which is in task.Service.js, which is in the services folder
-            .subscribe(task => {
-                this.tasks.push(task);
+            .subscribe(data => {
+                console.log('Checking an addTask data: ');
+                console.log(data);
+                this.tasks.push(data);
                 //clear the form:
                 this.title = '';
         })

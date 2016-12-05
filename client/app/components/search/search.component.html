@@ -9,8 +9,16 @@
 
 
 <div class ="task-list">
-    <div *ngFor="let task of tasks"> <!-- the asterisk in *ngFOr means it will use the DOm element as a template to render the loop -->
-
-
-
+    <div *ngFor="let result of results"> <!-- the asterisk in *ngFOr means it will use the DOm element as a template to render the loop -->
+        
+    <div class ="col-md-7">
+        <h2> Game title: {{result.title}} </h2>
+        <p> User id: {{result.accountID}} </p>
+        
+    </div>
+        
+       
+        <br><br>
+</div> <!-- end of ngFor -->
 </div>
+

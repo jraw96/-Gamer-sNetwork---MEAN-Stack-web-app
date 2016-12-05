@@ -8,5 +8,5 @@ export class Task{
     nickName: string; // nickname associated with the Auth0 account
     description: string; // description about a game
     searchWord: string; // searched word by user
-    
+    results: [{}]; // array of objects
 }

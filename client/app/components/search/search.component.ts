@@ -21,9 +21,16 @@ export class SearchComponent {
     nickName: string;
     description: string;
     searchWord: string;
+    results: [{}];
+    
+    
+   //var resultArray = new Array();
     
     
     constructor(private taskService:TaskService ){ }
+        
+    
+        
         
         //Only function is to search for tasks
         searchTasks(event){
@@ -37,9 +44,20 @@ export class SearchComponent {
             
              this.taskService.searchTasks(searchedWord) // here addTask belongs to taskService, which is in task.Service.js, which is in the services folder
                 .subscribe(data => {
-                    this.tasks.push(data);
+                    console.log('Data');
+                    console.log(data);
+                    console.log('Test beneath');
+                    console.log(data[0].accountID);
+                    console.log('Array size recieved: '+ data.length);
+                    //Data is the array of objects from the found games
+                    
+                    this.results = data;
+                    //this.tasks.push(this.results);
+                    
+                    //this.tasks.push(data);
                     //clear the form:
-                    this.searchWord = '';
+                   
+                   
         })
             
        }

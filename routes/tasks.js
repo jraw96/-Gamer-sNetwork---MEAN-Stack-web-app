@@ -42,13 +42,11 @@ router.get('/search', function(req, res, next){
     
     var game = req.query.param1; // Save the game search that was included the get paramter as a string
      console.log('Searched game: ' + game);
-     
-    
+
      var array = new Array();
      var counter = 0;
      var total = 0;
-  
-   
+
           db.userList.find({}).forEach(function(err, item){
          //console.log(item.authID);
 
@@ -65,41 +63,84 @@ router.get('/search', function(req, res, next){
         }
              
         catch(err){ // This is so bad writing the rest of the code here
-            
-            
-          
+   
           console.log('Value of counter: ' + counter);
           console.log(err);  
           console.log(' ');
           
           try{
           //Find the account names that have the selected games, then send all the users with their names, games and descriptions to a new collection called SearchQueue. This will display all the account data  
-          var secondsToWait = 1;
+        
+                      
+                      
+                      
+       var jsonArray = new Array();
+        
+    
+        var secondsToWait = 1000;
         setTimeout(function() {         
                 
-        for( var i = 0; i <= counter - 1; i++){
+        var key = 1;
         
+        var counter2 = 0;
+        
+        for( var i = 0; i <= counter - 1; i++){ // PROBLEM STARTS HERE
         db[array[i]].findOne({"title" : game}, function(err,item){
+
+         
+        if(item === null){
+            console.log('NULL CASE WOO');
+            counter2 = counter2 + 1;
+            key = 0;
+        }
+        if (key === 1){
         
          var boko = item.accountID;
          var goko = item.title;
          console.log('boko: ' + boko);
          console.log('goko: ' + goko);   
-        console.log('Inside first condition');
-        console.log(item);
-        console.log('Before assign item data');
+         console.log('Inside first condition');
+         console.log(item);
+         console.log('Before assign item data');
         //if(i === counter) throw "No more users with this game";      
-        db.searchQueue.save({"title" : boko}, {"game" : goko });   
-
+         db.searchQueue.save({"title" : boko}, {"game" : goko });   
+         console.log('Tried to save: ' + goko);
          console.log('waited 1 sec');// Whatever you want to do after the wait
         
+         var entry = 'User: ' + boko + ' Game: ' + goko;
+        
+         console.log('Entry value: ' + entry);
+         jsonArray.push(item);
+         counter2 = counter2 + 1;
+         
+         
+         
+         console.log('Value of counter at this moment under counter2' + counter);
+         console.log('');
 
-          });
-
-          } // end of for loop
+        //After the final interationof the for loop
+    
+        } // end of key
+        
+        console.log(' Important value of counter2:' + counter2);
+        console.log('Important value of counter' + counter);
+        
+        if(counter2 === counter){
+            res.json(jsonArray);
+        }
+        
+        key = 1; //lock the key again
+        console.log('--------------------------------------------');
+          }); // End of item scope
           
-          
+        } // end of for loop -- FOR LOOP ENDS HERE
+         
+        
+          console.log('Finished for loop');
+ 
           }, secondsToWait);
+          
+   
           
          } catch(err){
              console.log(err);
@@ -109,6 +150,7 @@ router.get('/search', function(req, res, next){
         
        // console.log('Value of counter: ' + counter);
      });
+   console.log('Sweet spot?');
    
 });
 

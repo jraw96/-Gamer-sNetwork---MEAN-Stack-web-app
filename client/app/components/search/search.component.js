@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var task_service_1 = require('../../services/tasks/task.service');
 var SearchComponent = (function () {
+    //var resultArray = new Array();
     function SearchComponent(taskService) {
         this.taskService = taskService;
     }
@@ -23,9 +24,16 @@ var SearchComponent = (function () {
         console.log('Search word object: ' + searchedWord);
         this.taskService.searchTasks(searchedWord) // here addTask belongs to taskService, which is in task.Service.js, which is in the services folder
             .subscribe(function (data) {
-            _this.tasks.push(data);
+            console.log('Data');
+            console.log(data);
+            console.log('Test beneath');
+            console.log(data[0].accountID);
+            console.log('Array size recieved: ' + data.length);
+            //Data is the array of objects from the found games
+            _this.results = data;
+            //this.tasks.push(this.results);
+            //this.tasks.push(data);
             //clear the form:
-            _this.searchWord = '';
         });
     };
     SearchComponent = __decorate([

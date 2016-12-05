@@ -50,8 +50,10 @@ var TasksComponent = (function () {
         //To push to the brower and have it displayed temporarily:
         //this.tasks.push(newTask);
         this.taskService.addTask(newTask) // here addTask belongs to taskService, which is in task.Service.js, which is in the services folder
-            .subscribe(function (task) {
-            _this.tasks.push(task);
+            .subscribe(function (data) {
+            console.log('Checking an addTask data: ');
+            console.log(data);
+            _this.tasks.push(data);
             //clear the form:
             _this.title = '';
         });
