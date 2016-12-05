@@ -38,10 +38,12 @@ var TasksComponent = (function () {
         this.profile = JSON.parse(localStorage.getItem('profile'));
         //console.log(this.title) //this display in the browser console what was submitted in form-grop div in the html file
         var account = this.profile.user_id;
-        console.log('account value in client: ' + account);
+        var nickName = this.profile.nickname;
+        console.log('account value in client: ' + account + ' with nickname: ' + nickName);
         var newTask = {
             title: this.title,
             accountID: account,
+            nickName: nickName,
             isDone: false,
             editMode: false
         };
@@ -54,6 +56,22 @@ var TasksComponent = (function () {
             _this.title = '';
         });
     };
+    /*
+    searchTasks(event){
+        
+       
+        var gameObj = { game : this.game};
+        var gameName = gameObj.game; // get a string of the title of the game
+        
+        console.log('Attempting to use searchTask');
+        this.taskService.searchTasks(gameName);
+            .subscribe(data => {
+                this.tasks.push(data);
+                //Clear the form somehow
+            })
+       
+    }
+    */
     TasksComponent.prototype.deleteTask = function (id) {
         var tasks = this.tasks; // take in a tasks and set it to the current tasks
         //Copied from profile.components
@@ -78,7 +96,8 @@ var TasksComponent = (function () {
             title: task.title,
             isDone: !task.isDone,
             accountID: task.accountID,
-            editMode: !task.editMode
+            editMode: !task.editMode,
+            nickName: task.niceName
         };
         //Call a service function to send the new data
         this.taskService.updateStatus(_task)

@@ -25,6 +25,9 @@ export class TasksComponent {
     accountID: string;
     profile: any;
     account: any;
+    game: string;
+    nickName: string;
+    description: string;
    
     
     
@@ -34,7 +37,7 @@ export class TasksComponent {
         this.profile = JSON.parse(localStorage.getItem('profile'));
         console.log(this.profile);
         var account = this.profile.user_id;
-        
+       
         
         this.taskService.getTasks(account) //'this' usually means global object (window in the browser)
             .subscribe(tasks =>{
@@ -50,11 +53,13 @@ export class TasksComponent {
         this.profile = JSON.parse(localStorage.getItem('profile'));
         //console.log(this.title) //this display in the browser console what was submitted in form-grop div in the html file
         var account = this.profile.user_id;
+        var nickName = this.profile.nickname;
         
-        console.log('account value in client: ' + account);
+        console.log('account value in client: ' + account + ' with nickname: ' + nickName);
         var newTask = {
             title: this.title, // this.title is equal to whatever is typed in
             accountID: account,
+            nickName: nickName,
             isDone: false,
             editMode: false
            
@@ -69,6 +74,23 @@ export class TasksComponent {
                 this.title = '';
         })
     }
+    
+    /*
+    searchTasks(event){
+        
+       
+        var gameObj = { game : this.game};
+        var gameName = gameObj.game; // get a string of the title of the game
+        
+        console.log('Attempting to use searchTask');
+        this.taskService.searchTasks(gameName);
+            .subscribe(data => {
+                this.tasks.push(data);
+                //Clear the form somehow
+            })
+       
+    }
+    */
     
     deleteTask(id){
         var tasks = this.tasks; // take in a tasks and set it to the current tasks
@@ -96,7 +118,8 @@ export class TasksComponent {
             title: task.title,
             isDone: !task.isDone,
             accountID: task.accountID,
-            editMode: !task.editMode
+            editMode: !task.editMode,
+            nickName: task.niceName
         };
         //Call a service function to send the new data
         this.taskService.updateStatus(_task)

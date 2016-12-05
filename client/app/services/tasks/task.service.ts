@@ -22,12 +22,27 @@ export class TaskService{ // create the class TaskService
     getTasks(account){
         let params = new URLSearchParams; //Send the account ID as a paramter in the get request
         params.set('param1',account);
+   
         
         return this.http.get('/api/tasks', {search : params})
         
         //Return as an observable
         .map(res => res.json()); // return as type json
     }
+    
+    /*
+    searchTasks(gameName){
+        console.log('Inside injectable');
+        let params = new URLSearchParams;
+        params.set('param1', gameName);
+       
+        
+        return this.http.get('./api/search')
+        
+        //Return as observable
+        .map(res => res.json());
+    }
+    */
     
     addTask(newTask){ //take in the newTask object from task.components.ts
         console.log('This is being sent to server: ' + newTask);

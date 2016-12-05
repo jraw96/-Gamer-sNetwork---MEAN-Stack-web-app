@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   selector: 'search',
   templateUrl: 'search.component.html'
 })
-export class SearchComponent { }
+export class SearchComponent { private taskService:TaskService }
 

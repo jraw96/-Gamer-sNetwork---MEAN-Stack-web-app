@@ -21,7 +21,7 @@ var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb')
 //This gets all tasks
 router.get('/tasks', function(req, res, next){ // connect to the home page, which is a simple '/'
  
-   var boko = req.query.param1;
+   var boko = req.query.param1; // param1 = auth0 id
    
    
    console.log('Get section: ' + boko);
@@ -35,6 +35,17 @@ router.get('/tasks', function(req, res, next){ // connect to the home page, whic
         res.json(tasks);
     });
 });
+
+/*
+//Search for a game title in the database
+router.get('/search', function(req, res, next){
+    
+    var game = req.query.param1; // Save the game search that was included the get paramter as a string
+    console.log('Inside the routes folder, about to search for: ' + game);
+  
+}
+
+*/
 
 
 // Get single tasks
@@ -58,8 +69,35 @@ router.post('/task', function(req, res, next){
     
    var boko = req.body;
    
-   console.log('In the post section:' + boko.accountID);
+   console.log('In the post section account ID:' + boko.accountID);
+   console.log('Associated nick name of above ID:' + boko.nickName);
    
+   
+   //db.userList.save({"authID": boko.accountID});
+    
+   db.userList.findOne({'authID' : boko.accountID}, function(err,item){
+      
+       if(err){
+           res.send(err);
+       }
+       
+       
+       if(item === null){ //If the user id has never enterd their data before, create a new document
+           db.userList.save({"authID": boko.accountID});
+       }  else if(item.authID !== boko.accountID){ // if the current user id is not in the userlist, add it to the list
+           db.userList.save({"authID": boko.accountID});
+           console.log('New user added to userList!');
+       } else {
+           console.log('Returning user.');
+       }
+       
+   });
+
+  
+  console.log('Passing anyway');
+  console.log('Exactly after passing away');
+
+
    var task = req.body; 
    if(!task.title || !(task.isDone +'')){
        res.status(400);

@@ -27,6 +27,19 @@ var TaskService = (function () {
         return this.http.get('/api/tasks', { search: params })
             .map(function (res) { return res.json(); }); // return as type json
     };
+    /*
+    searchTasks(gameName){
+        console.log('Inside injectable');
+        let params = new URLSearchParams;
+        params.set('param1', gameName);
+       
+        
+        return this.http.get('./api/search')
+        
+        //Return as observable
+        .map(res => res.json());
+    }
+    */
     TaskService.prototype.addTask = function (newTask) {
         console.log('This is being sent to server: ' + newTask);
         var headers = new http_2.Headers();
