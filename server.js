@@ -17,7 +17,7 @@ var home = require('./routes/home');
 var dmca = require('./routes/dmca');
 
 
-var port = 3000; 
+var PORT = 8000; 
 
 var app = express();
 
@@ -51,7 +51,7 @@ app.use('/api', tasks); // this is for using the api
 
 
 
-app.listen(port, function(){ // function() is a callback function that does soemthing when we connect
+app.listen(process.env.PORT || PORT, function(){ // function() is a callback function that does soemthing when we connect
     console.log('Server started on port' + port);
 
 }); // for turning on the server. 
