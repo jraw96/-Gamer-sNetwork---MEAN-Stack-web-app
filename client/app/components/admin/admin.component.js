@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require("../../services/auth/auth.service");
-var DmcaComponent = (function () {
-    function DmcaComponent(auth) {
+var AdminComponent = (function () {
+    function AdminComponent(auth) {
         this.auth = auth;
         //Because the profile data was saved as a string into localStorage, we need to get it back into JSON
         this.profile = JSON.parse(localStorage.getItem('profile'));
@@ -19,22 +19,16 @@ var DmcaComponent = (function () {
         //Store the corresponding database for this user
         var account;
         account = this.profile.user_id;
-        if (account === 'facebook|1042070685939018') {
-            this.show = true;
-        }
-        else {
-            this.show = false;
-        }
     }
-    DmcaComponent = __decorate([
+    AdminComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'dmca',
-            templateUrl: 'dmca.component.html'
+            selector: 'admin',
+            templateUrl: 'admin.component.html'
         }), 
         __metadata('design:paramtypes', [auth_service_1.Auth])
-    ], DmcaComponent);
-    return DmcaComponent;
+    ], AdminComponent);
+    return AdminComponent;
 }());
-exports.DmcaComponent = DmcaComponent;
-//# sourceMappingURL=dmca.component.js.map
+exports.AdminComponent = AdminComponent;
+//# sourceMappingURL=admin.component.js.map

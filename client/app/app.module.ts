@@ -24,6 +24,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DmcaComponent } from './components/DMCA/dmca.component';
 import { SearchComponent } from './components/search/search.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 //Importing routing directories
@@ -31,7 +32,7 @@ import { routing, appRoutingProviders } from './app.routing';
 
 @NgModule({
   imports:      [ BrowserModule, HttpModule, FormsModule, routing ], // In the imports, routing was made in app.routing.ts as RouterModule object
-  declarations: [ AppComponent, TasksComponent, HomeComponent, ProfileComponent, DmcaComponent, SearchComponent ],
+  declarations: [ AppComponent, TasksComponent, HomeComponent, ProfileComponent, DmcaComponent, SearchComponent, AdminComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ appRoutingProviders, AUTH_PROVIDERS, Auth, AuthGuard ]
 })

@@ -46,8 +46,8 @@ export class SearchComponent {
                 .subscribe(data => {
                     console.log('Data');
                     console.log(data);
-                    console.log('Test beneath');
-                    console.log(data[0].accountID);
+                    console.log('Test beneath for nickname');
+                    console.log(data[1].nickName);
                     console.log('Array size recieved: '+ data.length);
                     //Data is the array of objects from the found games
                     

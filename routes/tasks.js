@@ -97,6 +97,7 @@ router.get('/search', function(req, res, next){
         
          var boko = item.accountID;
          var goko = item.title;
+         var noko = item.nickName;
          console.log('boko: ' + boko);
          console.log('goko: ' + goko);   
          console.log('Inside first condition');

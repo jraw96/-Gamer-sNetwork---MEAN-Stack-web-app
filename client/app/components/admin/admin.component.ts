@@ -3,14 +3,13 @@ import { Auth } from "../../services/auth/auth.service";
 
 @Component({
   moduleId: module.id,
-  selector: 'dmca',
-  templateUrl: 'dmca.component.html'
+  selector: 'admin',
+  templateUrl: 'admin.component.html'
 })
-export class DmcaComponent { 
-
-     profile:any;
-    account:any;
-    show:any;
+export class AdminComponent {
+    
+    profile:any;
+    account:any
     
 constructor(private auth:Auth){
     
@@ -21,11 +20,5 @@ constructor(private auth:Auth){
     //Store the corresponding database for this user
     var account: any;
     account = this.profile.user_id;
-    
-    if(account === 'facebook|1042070685939018'){
-    this.show = true;
-    }else{
-        this.show = false;
-    }
 }
 }

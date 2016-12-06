@@ -5,6 +5,7 @@ var home_component_js_1 = require('./components/home/home.component.js');
 var profile_component_js_1 = require('./components/profile/profile.component.js');
 var dmca_component_js_1 = require('./components/DMCA/dmca.component.js');
 var search_component_1 = require('./components/search/search.component');
+var admin_component_1 = require('./components/admin/admin.component');
 //Import authguard
 var auth_guard_js_1 = require('./services/auth/auth.guard.js');
 var appRoutes = [
@@ -27,6 +28,10 @@ var appRoutes = [
     {
         path: 'search',
         component: search_component_1.SearchComponent
+    },
+    {
+        path: 'admin',
+        component: admin_component_1.AdminComponent
     }
 ];
 exports.appRoutingProviders = []; // set to any array and set it to an empty array
