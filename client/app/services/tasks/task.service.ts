@@ -60,7 +60,7 @@ export class TaskService{ // create the class TaskService
         let params = new URLSearchParams; //Send the account ID as a paramter in the get request
         params.set('param1',account);
         
-        return this.http.delete('http://localhost:3000/api/task/'+id, {search : params}) // concantenate the id
+        return this.http.delete('api/task/'+id, {search : params}) // concantenate the id
             .map(res => res.json()); 
     }
     
