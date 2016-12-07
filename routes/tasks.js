@@ -11,9 +11,9 @@ var mongojs = require('mongojs'); // bring in mongojs
 
 
 
-var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb'); // This is a driver that lets us connect to the online mongodb: mlab
+//var db = mongojs('mongodb://jraw:metroidprime44@ds139567.mlab.com:39567/jakedb'); // This is a driver that lets us connect to the online mongodb: mlab
                                                                                               // The second parameter is an array of the collections we want. We only have tasks
-
+var db = mongojs('mongodb://heroku_3wx0x5x2:7lcj5dg96ukm8dp5svuqk519k2@ds129018.mlab.com:29018/heroku_3wx0x5x2');
 
 
 //Note: req means request, res means responst, next means carry on once finished.
